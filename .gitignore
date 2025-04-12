@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+.env
+.idea
 __pycache__/
 *.py[cod]
 *$py.class
@@ -167,8 +169,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Ruff stuff:
-.ruff_cache/
-
 # PyPI configuration file
 .pypirc
+
+# Telethon sessions
+session/*
+!session/.gitkeep
