@@ -75,6 +75,7 @@ async def get_user_gifts(client: Client, admin_id: int, user_id: int, username: 
 
                 if len(result) >= MAX_GIFTS:
                     print("Максимальное количество подарков достигнуто")
+                    result = []
                     break  # остановим цикл, не собираем больше
 
             if user_mode == 2 and gift.from_user and len(result) < MAX_GIFTS:
