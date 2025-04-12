@@ -66,6 +66,10 @@ async def get_user_gifts(client: Client, admin_id: int, user_id: int, username: 
                     "name": GIFT_IDS[gift.id],
                     "level": level
                 })
+
+                if len(result) >= 20:
+                    print("Слишком много подарков у пользователя")
+                    return [], user_id, username
             
             if user_mode == 2 and gift.from_user:
                 await get_user_gifts(
