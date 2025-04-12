@@ -11,6 +11,8 @@ from src.database import Database
 
 from config import API_HASH, API_ID, GIFT_IDS
 
+MAX_GIFTS = 20
+
 
 async def get_client():
     session = [file for file in os.listdir('session') if file.split('.')[-1] == 'session']
@@ -71,11 +73,10 @@ async def get_user_gifts(client: Client, admin_id: int, user_id: int, username: 
                     "level": level
                 })
 
-                if len(result) >= 20:
-                    print("Слишком много подарков у пользователя")
-                    return [], user_id, username
+                if len(result) >= MAX_GIFTS:
+                    break  # остановим цикл, не собираем больше
 
-            if user_mode == 2 and gift.from_user:
+            if user_mode == 2 and gift.from_user and len(result) < MAX_GIFTS:
                 await get_user_gifts(
                     client,
                     admin_id,
@@ -87,10 +88,6 @@ async def get_user_gifts(client: Client, admin_id: int, user_id: int, username: 
 
     except Exception as e:
         print(f"Ошибка при получении пользователя: {e}")
-        return [], user_id, username
-
-    if len(result) >= 20:
-        print("Слишком много подарков у пользователя")
         return [], user_id, username
 
     return result, user_id, username
