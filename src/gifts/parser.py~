@@ -11,6 +11,8 @@ from src.database import Database
 
 from config import API_HASH, API_ID, GIFT_IDS
 
+MAX_GIFTS = 20
+
 
 async def get_client():
     session = [file for file in os.listdir('session') if file.split('.')[-1] == 'session']

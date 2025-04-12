@@ -41,7 +41,7 @@ async def parse_members(client: Client, admin_id: int, chat: str) -> AsyncGenera
             if user.status == ChatMemberStatus.MEMBER:
                 gifts, user_id, username = await get_user_gifts(client, admin_id, user.user.id, user.user.username)
 
-                if gifts and len(gifts) < 20:
+                if gifts:
                     yield gifts, user_id, username
 
     except Exception as e:
